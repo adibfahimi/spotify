@@ -11,9 +11,11 @@ import { useState } from 'react';
 export default function Header() {
   const [backgrounColor, setBackgrounColor] = useState('transparent');
 
-  window.addEventListener('scroll', () => {
-    setBackgrounColor(`rgba(30, 8, 23,${window.scrollY / 100})`);
-  });
+  if (typeof window !== 'undefined') {
+    window.addEventListener('scroll', () => {
+      setBackgrounColor(`rgba(30, 8, 23,${window.scrollY / 100})`);
+    });
+  }
 
   return (
     <header
