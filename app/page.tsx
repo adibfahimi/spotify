@@ -2,7 +2,7 @@ import data from '../data.json';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-
+import { PlayIcon } from '../components/Icons';
 const list = [
   {
     title: 'INTERWORLD',
@@ -38,7 +38,7 @@ export default function Home() {
       <Footer />
       <Header />
 
-      <main className="relative z-0 ml-[218px] overflow-y-auto pt-16 ">
+      <main className="relative z-0 ml-[218px] overflow-y-auto pt-16 pb-[118px]">
         <div className="absolute  -z-20  -mt-16 h-[332px] w-full bg-gradient-to-b  from-[#502040]  opacity-50  "></div>
         <div className="  grid max-w-[1955px]  gap-6 px-8 pt-6  ">
           <section className="mb-4 flex min-h-[200px] flex-col">
@@ -49,7 +49,7 @@ export default function Home() {
               {list.map((item, index) => (
                 <div
                   key={index}
-                  className="flex h-20  items-center gap-4 overflow-hidden rounded bg-[#ffffff1a]"
+                  className=" group relative flex h-20  cursor-pointer items-center gap-4 overflow-hidden rounded bg-[#ffffff1a] hover:bg-[#ffffff33] "
                 >
                   <div className="relative h-20 w-20">
                     <img
@@ -69,6 +69,10 @@ export default function Home() {
                   >
                     <p>{item.title}</p>
                   </a>
+
+                  <div className="absolute  right-4 hidden h-12 w-12 items-center justify-center rounded-full bg-[#1ed760] text-black group-hover:visible group-hover:flex">
+                    <PlayIcon />
+                  </div>
                 </div>
               ))}
             </div>
@@ -82,13 +86,13 @@ export default function Home() {
                 <h2 className="mb-4 font-[CircularSpTitle] text-2xl font-bold ">
                   <a draggable="false">{item.title}</a>
                 </h2>
-                <div className="grid h-[300px]   grid-cols-2 gap-4  overflow-y-hidden md:grid-cols-3 lg:grid-cols-5  2xl:grid-cols-8">
+                <div className=" grid h-[300px] grid-cols-2   gap-4 overflow-hidden  overflow-y-hidden md:grid-cols-3 lg:grid-cols-5  2xl:grid-cols-8">
                   {item.list.slice(0, 8).map((card, index2) => (
                     <div
                       key={index2}
-                      className="flex w-full flex-col justify-center   bg-[#181818] p-4"
+                      className="group flex w-full cursor-pointer flex-col justify-center rounded  bg-[#181818] p-4 hover:bg-[#282828]"
                     >
-                      <div className="mb-4">
+                      <div className="relative mb-4">
                         <img
                           draggable="false"
                           loading="lazy"
@@ -96,11 +100,20 @@ export default function Home() {
                           alt=""
                           className="h-full w-full rounded "
                         />
+                        <div className="absolute bottom-2 right-2 hidden h-12 w-12 items-center justify-center rounded-full bg-[#1ed760] text-black group-hover:visible group-hover:flex">
+                          <PlayIcon />
+                        </div>
                       </div>
                       <div className="flex flex-col gap-1 ">
-                        <a className="text-base font-bold">{card.title}</a>
+                        <a className="text-base font-bold">
+                          {card.title.length > 25
+                            ? card.title.slice(0, 25) + '...'
+                            : card.title}
+                        </a>
                         <div className="text-sm  text-[#a7a7a7] ">
-                          {card.description}
+                          {card.description.length > 59
+                            ? card.description.slice(0, 59) + '...'
+                            : card.description}
                         </div>
                       </div>
                     </div>

@@ -39,6 +39,7 @@ body,
 html {
   font-family: 'CircularSp', sans-serif;
   background-color: #121212;
+  line-height: 1.6;
 }
 
 .btn {
